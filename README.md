@@ -1,5 +1,6 @@
-## Ohjelmistotekniikka, harjoitustyö
-### Tehtävät
+# Ohjelmistotekniikka, harjoitustyö
+## Tehtävät
+### Viikko 1
 
 [gitlog.txt](https://github.com/imhlas/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
