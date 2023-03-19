@@ -10,5 +10,5 @@ Ohjelmistotekniikka -kurssi sisältää viikoittaisia laskareita, mutta **tärke
 
 *Sisältöön kuuluu versionhallinnan opettelua.*
 
-Tähän tulee vielä muutoksia.
+Epäsynkroonin testaus tehtävässä 17.
 
