@@ -1,14 +1,7 @@
-# Ohjelmistotekniikka, harjoitustyö
-## Tehtävät
-### Viikko 1
+# Ohjelmistotekniikka kevät 2023
 
-[gitlog.txt](https://github.com/imhlas/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](https://github.com/imhlas/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
-
-Ohjelmistotekniikka -kurssi sisältää viikoittaisia laskareita, mutta **tärkeimpänä tehtävänä kurssilla** on viikolla 2 alkava harjoitustyö.
+Ohjelmistotekniikka -kurssi sisältää viikoittaisia laskareita, minkä lisäksi kurssilla toteutetaan *harjoitustyö*. Harjoitustyössä toteutetaan itsenäisesti ohjelmisto omavalintaisesta aiheesta.
 
 *Sisältöön kuuluu versionhallinnan opettelua.*
 
-Epäsynkroonin testaus tehtävässä 17.
 
