@@ -5,6 +5,13 @@ Sovelluksen avulla käyttäjät voivat seurata omia voimassaolevia tilauksiaan e
 ## Käyttäjät
 Sovelluksella on ainoastaan yksi käyttäjärooli eli *normaali käyttäjä*.
 
+## Käyttöliittymä
+Sovellusta pystyy käyttämään graafisen käyttöliittymän kautta.
+- Näkymä kirjautumissivulle
+- Näkymä uuden käyttäjän luomiselle
+- Näkymä käytäjän voimassaolevista tilauksista
+- Näkymä menneisiin tilauksiin ja niiden kustannuksiin (tämä jos jää aikaa)
+
 ## Perusversion tarjoama toiminnallisuus
 ### Ennen kirjautumista
 - Käyttäjä voi luoda käyttäjätunnuksen
@@ -24,3 +31,8 @@ Sovelluksella on ainoastaan yksi käyttäjärooli eli *normaali käyttäjä*.
 - Tilausten jako kategorioihin (suoratoistopalvelut, lehtitilaukset, liikunta ym.)
 - Päättyneiden tilausten tarkastelu
 - Tilauksiin käytettyjen rahasummien tarkastelu kuukausittain
+
+## Toimintaympäristön rajoitteet
+- Ohjelmiston tulee toimia Linux -käyttöjärjestelmällä varustetuissa koneissa
+- Sovelluksen tulee toimia Python-versiolla 3.8
+- Sovelluksen tiedot talletetaan paikalliselle koneelle SQLite-tietokantaa hyödyntäen
