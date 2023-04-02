@@ -1,12 +1,24 @@
 from entities.user import User
+from database_connection import get_database_connection
 
 class UserRepository:
-    def __init__(self):
-        self.all_users = {}
+    def __init__(self, connection):
+        self._connection = connection
 
     def get_users(self):
-        return list(self.all_users.keys)
+        cursor = self._connection.cursor()
 
-    def add_user_to_userlist(self, user):
-	self.all_users[user.username] = user.password
+        cursor.execute("SELECT * FROM  users")
 
+        rows = cursor.fetchall()
+
+        return [row[0] for row in rows]
+
+    def create_user(self, user):
+        cursor = self._connection.cursor()
+
+        cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (user.username, user.password))
+
+        self._connection.commit()
+
+        return user
