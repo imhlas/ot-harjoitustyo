@@ -15,3 +15,10 @@ class SubscriptionService:
         else:
             raise UsernameExistsError(f"Username {username} already exists")
 
+    def login(self, username, password):
+        user_info = self.user_repository.find_user(username, password)
+        if not user_info:
+            raise InvalidCredentialsError("Invalid username or password")
+        else:
+            user = User(user_info[0], user_info[1])
+        return user
