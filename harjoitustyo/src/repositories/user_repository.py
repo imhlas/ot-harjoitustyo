@@ -9,7 +9,7 @@ class UserRepository:
         cursor = self._connection.cursor()
         cursor.execute("SELECT * FROM  users")
         rows = cursor.fetchall()
-
+        #palauttaa pelkät käyttäjätunnukset ilman salasanatietoja
         return [row[0] for row in rows]
 
     def create_user(self, user):
@@ -27,3 +27,5 @@ class UserRepository:
         #Jos käyttäjää ei löydy, funktio palauttaa None
         if row:
             return (row["username"], row["password"])
+
+user_repository = UserRepository(get_database_connection())

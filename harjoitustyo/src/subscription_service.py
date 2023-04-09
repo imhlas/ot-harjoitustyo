@@ -1,12 +1,11 @@
 from entities.user import User
-from repositories.user_repository import UserRepository
-from database_connection import get_database_connection
+from repositories.user_repository import (user_repository as default_user_repository)
+
 
 class SubscriptionService:
-    def __init__(self):
-	#UserReposity -luokkaa käytetään käyttäjiin liittyvissä tietokantaoperaatioissa
-        connection = get_database_connection()
-        self.user_repository = UserRepository(connection)
+    def __init__(self, user_repository = default_user_repository):
+	#default_user_repo mahdollistaa tietokantayhteyden luonnin repon puolella
+        self.user_repository = user_repository
 
     def create_user(self, username, password):
         all_users = self.user_repository.get_users()
@@ -22,3 +21,14 @@ class SubscriptionService:
         else:
             user = User(user_info[0], user_info[1])
         return user
+
+    def return_all_users(self):
+        all_users = self.user_repository.get_users()
+        return all_users
+
+#omat luokat erroreille, jotta ne voidaan importata suoraan testeihin
+class UsernameExistsError(Exception):
+    pass
+
+class InvalidCredentialsError(Exception):
+    pass
