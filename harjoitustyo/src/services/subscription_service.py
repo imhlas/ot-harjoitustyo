@@ -26,6 +26,8 @@ class SubscriptionService:
         all_users = self.user_repository.get_users()
         return all_users
 
+subscription_service = SubscriptionService()
+
 #omat luokat erroreille, jotta ne voidaan importata suoraan testeihin
 class UsernameExistsError(Exception):
     pass
