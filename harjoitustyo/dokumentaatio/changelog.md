@@ -5,3 +5,7 @@
 - Lisätty SubscriptionService -luokka, joka vastaa sovelluslogiikasta
 - Lisätty UserRepository -luokka, joka vastaa käyttäjiin liittyvistä tietokantaoperaatioista
 - Testattu, että UserRepository -luokka lisää uuden käyttäjän ja palauttaa kaikki käyttäjät
+
+## Viikko 4
+- Lisätty ui.py -tiedosto, joka vastaa soveluksen käyttöliittymästä
+

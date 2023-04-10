@@ -1,6 +1,6 @@
 import unittest
 from entities.user import User
-from subscription_service import (SubscriptionService, UsernameExistsError, InvalidCredentialsError)
+from services.subscription_service import (SubscriptionService, UsernameExistsError, InvalidCredentialsError)
 
 class FakeUserRepository:
     #tallennetaan testauksessa käyttäjät listaan, jotta tietokantayhteyttä ei tarvita service-koodin testauksessa

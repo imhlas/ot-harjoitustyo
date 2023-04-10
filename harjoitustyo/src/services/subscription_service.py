@@ -1,6 +1,12 @@
 from entities.user import User
 from repositories.user_repository import (user_repository as default_user_repository)
 
+#omat luokat erroreille, jotta ne voidaan importata suoraan testeihin
+class UsernameExistsError(Exception):
+    pass
+
+class InvalidCredentialsError(Exception):
+    pass
 
 class SubscriptionService:
     def __init__(self, user_repository = default_user_repository):
@@ -28,9 +34,3 @@ class SubscriptionService:
 
 subscription_service = SubscriptionService()
 
-#omat luokat erroreille, jotta ne voidaan importata suoraan testeihin
-class UsernameExistsError(Exception):
-    pass
-
-class InvalidCredentialsError(Exception):
-    pass
