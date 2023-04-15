@@ -10,4 +10,6 @@
       SubscriptionRepository "1" -- "*" Subscription
       SubscriptionService "1" -- "1" SubscriptionRepository
       SubscriptionService "1" -- "1" UserRepository
+      SubscriptionService ..> User
+      SubscriptionService ..> Subscription
 ```
