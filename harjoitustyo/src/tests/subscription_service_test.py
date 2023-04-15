@@ -1,18 +1,20 @@
 import unittest
 from entities.user import User
-from services.subscription_service import (SubscriptionService, UsernameExistsError, InvalidCredentialsError)
+from services.subscription_service import (
+    SubscriptionService, UsernameExistsError, InvalidCredentialsError)
+
 
 class FakeUserRepository:
-    #tallennetaan testauksessa käyttäjät listaan, jotta tietokantayhteyttä ei tarvita service-koodin testauksessa
+    # tallennetaan testauksessa käyttäjät listaan, jotta tietokantayhteyttä ei tarvita service-koodin testauksessa
     def __init__(self):
         self.users = []
 
     def get_users(self):
         if len(self.users) >= 1:
-             all_usernames = []
-             for user in self.users:
-                 all_usernames.append(user.username)
-                 return all_usernames
+            all_usernames = []
+            for user in self.users:
+                all_usernames.append(user.username)
+                return all_usernames
         return []
 
     def create_user(self, user):
@@ -23,6 +25,7 @@ class FakeUserRepository:
             if username == self.users[0] and password == self.users[1]:
                 return (self.users[0], self.users[1])
         return None
+
 
 class TestSubscriptionService(unittest.TestCase):
     def setUp(self):

@@ -4,6 +4,7 @@ from repositories.user_repository import UserRepository
 from database_connection import get_database_connection
 from initialize_database import initialize_database
 
+
 class TestUserRepository(unittest.TestCase):
     def setUp(self):
         self.kayttaja1 = User("iida", "salasana123")
@@ -26,7 +27,7 @@ class TestUserRepository(unittest.TestCase):
         self.assertEqual(user_info, ("iida", "salasana123"))
 
     def test_find_user_returns_none_if_no_user(self):
-        #käyttäjää ei ole luotu tietokantaan, joten funktion tulisi palauttaa None
+        # käyttäjää ei ole luotu tietokantaan, joten funktion tulisi palauttaa None
         user_info = self.user_repo.find_user("iida", "salasana123")
 
         self.assertEqual(user_info, None)
