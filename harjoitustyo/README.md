@@ -24,3 +24,9 @@ Testikattavuusraportin voi muodostaa komennolla:
 ```bash
 poetry run invoke coverage-report
 ```
+### Pylint
+Pylint-tarkistukset voi suorittaa komennolla:
+```bash
+poetry run invoke lint
+```
+
