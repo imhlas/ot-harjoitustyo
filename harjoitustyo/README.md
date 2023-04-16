@@ -3,8 +3,10 @@ Sovelluksen avulla käyttäjät voivat seurata voimassaolevia tilauksiaan eri pa
 
 ## Dokumentaatio
 - [Vaatimusmäärittely](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
+- [Arkkitehtuurikuvaus](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/arkkitehtuuri.md)
 - [Työaikakirjanpito](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/changelog.md)
+
 
 ## Komentorivitoiminnot
 ### Ohjelman suorittaminen

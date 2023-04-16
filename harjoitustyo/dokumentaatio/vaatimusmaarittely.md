@@ -7,15 +7,15 @@ Sovelluksella on ainoastaan yksi käyttäjärooli eli *normaali käyttäjä*.
 
 ## Käyttöliittymä
 Sovellusta pystyy käyttämään graafisen käyttöliittymän kautta.
-- Näkymä kirjautumissivulle
-- Näkymä uuden käyttäjän luomiselle
+- Näkymä kirjautumissivulle *(tehty)*
+- Näkymä uuden käyttäjän luomiselle *(tehty)*
 - Näkymä käytäjän voimassaolevista tilauksista
 - Näkymä menneisiin tilauksiin ja niiden kustannuksiin (tämä jos jää aikaa)
 
 ## Perusversion tarjoama toiminnallisuus
 ### Ennen kirjautumista
-- Käyttäjä voi luoda käyttäjätunnuksen
-- Käyttäjä voi kirjautua järjestelmään
+- Käyttäjä voi luoda käyttäjätunnuksen *(tehty)*
+- Käyttäjä voi kirjautua järjestelmään *(tehty)*
 	- Kirjatuminen tapahtuu käyttäjätunnuksen ja salasanan avulla
 	- Jos käyttäjää ei ole olemassa, järjestelmä ilmoittaa tästä
 	- Jos salasana on väärä, järjestelmä ilmoittaa tästä

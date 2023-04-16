@@ -8,3 +8,5 @@
 | 4.4   |  4   | tietojen tallennus ja haku tietokantaan, task-tehtävien määritys, käyttöohjeiden tarkennus |
 | 9.4   |  3   | TkInter tutustuminen ja testailu
 | 10.4  |  3   | Graafinen käyttöliittymä kirjautumissivulle ja siirtymä käyttäjän luonnin näkymään
+| 15.4  |  4   | Arkkitehtuurikuvaus, graafisen käyttöliittymän laajentaminen
+| 16.4  |  2   | Sovelluslogiikan ja testien laajentaminen

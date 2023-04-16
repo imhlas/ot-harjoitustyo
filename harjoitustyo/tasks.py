@@ -2,7 +2,7 @@ from invoke import task
 
 @task
 def start(ctx):
-    ctx.run("python3 src/subscription_service.py", pty=True)
+    ctx.run("python3 src/ui_main.py", pty=True)
 
 @task
 def test(ctx):

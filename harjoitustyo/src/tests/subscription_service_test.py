@@ -1,5 +1,6 @@
 import unittest
 from entities.user import User
+from entities.subscription import Subscription
 from services.subscription_service import (
     SubscriptionService, UsernameExistsError, InvalidCredentialsError)
 
@@ -22,14 +23,18 @@ class FakeUserRepository:
 
     def find_user(self, username, password):
         for row in self.users:
-            if username == self.users[0] and password == self.users[1]:
-                return (self.users[0], self.users[1])
+            if username == self.users[1] and password == self.users[2]:
+                return (self.users[1], self.users[2])
         return None
+
+class FakeSubscriptionRepository:
+    def __init__(self):
+        self.subscriptions = []
 
 
 class TestSubscriptionService(unittest.TestCase):
     def setUp(self):
-        self.subscription_service = SubscriptionService(FakeUserRepository())
+        self.subscription_service = SubscriptionService(FakeUserRepository(),FakeSubscriptionRepository())
         self.user_timo = User("timo", "salasana123")
 
     def test_create_user_succesfully(self):

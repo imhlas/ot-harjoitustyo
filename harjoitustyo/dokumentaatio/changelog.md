@@ -7,5 +7,8 @@
 - Testattu, että UserRepository -luokka lisää uuden käyttäjän ja palauttaa kaikki käyttäjät
 
 ## Viikko 4
-- Lisätty ui.py -tiedosto, joka vastaa soveluksen käyttöliittymästä
+- Lisätty ui-hakemisto ja luotu sinne sovelluksen graafisesta käyttöliittymästä vastaavat tiedostot
+- Käyttäjä voi käynnistää sovelluksen graafisella käyttöliittymällä
+- Käyttäjä voi luoda käyttäjätunnuksen
+- Käyttäjä voi kirjautua sisään
 
