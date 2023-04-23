@@ -7,6 +7,19 @@ Sovelluksen avulla käyttäjät voivat seurata voimassaolevia tilauksiaan eri pa
 - [Työaikakirjanpito](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/changelog.md)
 
+## Asennus
+1. Riippuvuuksien asentaminen komennolla:
+```bash
+poetry install
+```
+2. Alustustoimenpiteet komennolla:
+```bash
+poetry run invoke build
+```
+3. Sovelluksen käynnistys komennolla:
+```bash
+poetry run invoke start
+```
 
 ## Komentorivitoiminnot
 ### Ohjelman suorittaminen
