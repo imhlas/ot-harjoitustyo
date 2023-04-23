@@ -10,3 +10,6 @@
 | 10.4  |  3   | Graafinen käyttöliittymä kirjautumissivulle ja siirtymä käyttäjän luonnin näkymään
 | 15.4  |  4   | Arkkitehtuurikuvaus, graafisen käyttöliittymän laajentaminen
 | 16.4  |  2   | Sovelluslogiikan ja testien laajentaminen
+| 22.4  |  4   | Arkkitehtuurikuvauksen laajennus, sovelluslogiikan laajentaminen SubscriptionsRepositoryn osalta
+| 23.4  |  4   | Graafisen käyttöliittymän laajentaminen ja parantelu
+| YHT   |  33  |

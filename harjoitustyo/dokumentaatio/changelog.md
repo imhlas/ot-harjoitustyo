@@ -12,3 +12,9 @@
 - Käyttäjä voi luoda käyttäjätunnuksen
 - Käyttäjä voi kirjautua sisään
 
+## Viikko 5
+- Käyttäjä näkee aktiiviset tilaukset
+- Käyttäjä voi lisätä uuden tilauksen
+- Käyttäjä voi kirjautua ulos
+- Lisätty SubscriptionRepository -luokka, joka vastaa tilausten tallennuksesta tietokantaan
+- Lisätty graafiseen käyttöliittymään näkymä uusien tilauksien luonnille

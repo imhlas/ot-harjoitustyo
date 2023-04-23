@@ -26,7 +26,8 @@ class CreateUserView:
 
         try:
             subscription_service.create_user(username_value, password_value)
-            self._show_message(f"User {username_value} created succesfully")
+            self._show_message(f"User {username_value} created succesfully. Please wait.")
+            self._root.after(3000, self._show_login_view)
 
         except UsernameExistsError:
             self._show_message(f"Username {username_value} already exists")
@@ -52,9 +53,11 @@ class CreateUserView:
         self._frame = ttk.Frame(master=self._root)
 
         self._message_variable = StringVar(self._frame)
+
         self._message_label = ttk.Label(
-            master=self._frame, textvariable=self._message_variable, foreground="red")
-        self._message_label.grid(pady=5)
+            master=self._frame, textvariable=self._message_variable, foreground="green", font=("Arial", 14, "bold"))
+
+        self._message_label.grid(row=5, column=1, pady=(10, 0))
 
         heading_label = ttk.Label(
             master=self._frame, text="Create user", font=("Arial", 13))

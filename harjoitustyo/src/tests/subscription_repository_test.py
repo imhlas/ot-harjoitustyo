@@ -1,22 +1,40 @@
 import unittest
 from entities.subscription import Subscription
-from repositories.subscription_repository import SubscriptionRepository
-from database_connection import get_database_connection
+from entities.user import User
+from repositories.subscription_repository import subscription_repository
 from initialize_database import initialize_database
 from datetime import datetime
 
-class TestUserRepository(unittest.TestCase):
+class TestSubscriptionRepository(unittest.TestCase):
     def setUp(self):
-        self.subscription1 = Subscription("user_id1", "Netflix", 9.90, "3.3.2023")
-        self.subscription2 = Subscription("user_id2", "Spotify", 11.90, "2.2.2022")
+        self.kayttaja1 = User("iida", "salasana123")
+
+        self.subscription1 = Subscription(self.kayttaja1.user_id, "Netflix", 9.90, "3.3.2023")
+        self.subscription2 = Subscription(self.kayttaja1.user_id, "Spotify", 11.90, "2.2.2022")
         initialize_database()
-        connection = get_database_connection()
-        self.subs_repo = SubscriptionRepository(connection)
 
     def test_create(self):
-        subscription = self.subs_repo.create(self.subscription1)
+        subscription = subscription_repository.create(self.subscription1)
 
-        self.assertEqual(subscription.user_id, "user_id1")
+        self.assertEqual(subscription.user_id, self.kayttaja1.user_id)
         self.assertEqual(subscription.name, "Netflix")
         self.assertEqual(subscription.price, 9.90)
         self.assertEqual(subscription.end_date, "3.3.2023")
+
+    def test_find_users_subscriptions_returns_all_subscriptions(self):
+        subscription_repository.create(self.subscription1)
+        subscription_repository.create(self.subscription2)
+
+        subscriptions = subscription_repository.find_users_subscriptions(self.kayttaja1)
+
+        self.assertEqual(len(subscriptions), 2)
+
+        self.assertEqual(subscriptions[0].name, "Netflix")
+        self.assertEqual(subscriptions[1].name, "Spotify")
+
+    def test_find_users_subscriptions_returns_None(self):
+        subscriptions = subscription_repository.find_users_subscriptions(self.kayttaja1)
+
+        self.assertEqual(subscriptions, None)
+
+

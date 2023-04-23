@@ -1,5 +1,5 @@
 from database_connection import get_database_connection
-
+from entities.user import User
 
 class UserRepository:
     def __init__(self, connection):
@@ -27,6 +27,6 @@ class UserRepository:
         row = cursor.fetchone()
 
         # Jos käyttäjää ei löydy, funktio palauttaa None
-        return (row["user_id"], row["username"], row["password"]) if row else None
+        return User(row["username"], row["password"], row["user_id"]) if row else None
 
 user_repository = UserRepository(get_database_connection())

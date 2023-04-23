@@ -1,5 +1,5 @@
 # Subscription Manager App
-Sovelluksen avulla käyttäjät voivat seurata voimassaolevia tilauksiaan eri palveluihin. Käyttäjät näkevät profiilistaan voimassaolevat tilaukset, niiden hinnan sekä seuraavan veloitusajankohdan.
+Sovelluksen avulla käyttäjät voivat seurata voimassaolevia tilauksiaan eri palveluihin. Käyttäjät näkevät profiilistaan voimassaolevat tilaukset, niiden hinnan sekä seuraavan veloitusajankohdan. Käyttäjät voivat lisätä profiiliinsa uusia tilauksia sekä merkitä voimassaolevia tilauksia päättyviksi.
 
 ## Dokumentaatio
 - [Vaatimusmäärittely](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
