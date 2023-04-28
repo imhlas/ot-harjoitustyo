@@ -52,15 +52,15 @@ sequenceDiagram
   participant SubscriptionService
   participant UserRepository
   participant Testaaja
-  User->UI: click "Create user"
+  User->>UI: click "Create user"
   UI->>UI: handle_create_user_view()
-  UI->SubscriptionService: create_user("testaaja", "testi123")
-  SubscriptionService->UserRepository: get_users()
+  UI->>SubscriptionService: create_user("testaaja", "testi123")
+  SubscriptionService->>UserRepository: get_users()
   SubscriptionService->>SubscriptionService: Check username doesn't exist
-  SubscriptionService->Testaaja: User("testaaja", "testi123")
-  SubscriptionService->UserRepository: create_user(Testaaja)
-  UserRepository-->SubscriptionService: user
-  SubscriptionService-->UI: user
+  SubscriptionService->>Testaaja: User("testaaja", "testi123")
+  SubscriptionService->>UserRepository: create_user(Testaaja)
+  UserRepository-->>SubscriptionService: user
+  SubscriptionService-->>UI: user
   UI->>UI: show_message("User testaaja created succesfully. Please wait.")
   UI->>UI: show_login_view()
 ```
@@ -73,13 +73,13 @@ sequenceDiagram
   participant UI
   participant SubscriptionService
   participant UserRepository
-  User -> UI: click "Login"
-  UI->SubscriptionService: login("testaaja", "testi123")
-  SubscriptionService->UserRepository: find_user("testaaja", "testi123")
+  User->> UI: click "Login"
+  UI->>SubscriptionService: login("testaaja", "testi123")
+  SubscriptionService->>UserRepository: find_user("testaaja", "testi123")
   SubscriptionService->>SubscriptionService: Check valid credentials
-  UserRepository-->SubscriptionService: user
-  SubscriptionService -->UI: user
-  UI->>UI show_application_view()
+  UserRepository-->>SubscriptionService: user
+  SubscriptionService-->>UI: user
+  UI->>UI: show_application_view()
 ```
 *Login* -painike aktivoi tapahtumankäsittelijän kutsumaan sovelluslogiikan *SubscriptionService* metodia *login*, joka sisältää parametrit käyttäjätunnukselle ja salasanalle. *SubscriptionService* puolestaan lähettää kutsun *UserRepository*:n metodille *find_user* antaen parametreiksi samat juuri saamansa käyttäjätunnuksen ja salasanan. Mikäli tietokannasta löytyy käyttäjätunnusta ja salasanaa vastaava rivi, käyttäjä palautetaan. Mikäli riviä eli käyttäjää ei löydy, palautuu None. Mikäli kyseisillä tunnuksilla ei löytynyt käyttäjää, *SubscriptionService* tuottaa *InvalidCredentialsError*:in. Mikäli käyttäjä löytyi, käyttöliittymä vaihtaa näkymäksi *CreateApplicationView*:n, joka avaa käyttäjälle sovelluksen päänäkymän sekä näyttää mahdolliset aiemmin lisätyt tilaukset.
 ### Uuden tilauksen lisääminen
@@ -91,13 +91,13 @@ sequenceDiagram
   participant SubscriptionService
   participant SubsciptionRepository
   participant subscription
-  User->UI: click "Add new subscription"
+  User->>UI: click "Add new subscription"
   UI->>UI: show_create_subscription_view()
-  UI->SubscriptionService: create_subscription("Netflix", 9.90, 27.6.2023)
-  SubscriptionService->subscription: Subscription(testaaja.user_id, "Netflix", 9.90, 27.6.2023)
-  SubscriptionService-> SubscriptionRepository: create(subscription)
-  SubscriptionRepository-->SubscriptionService: subscription
-  SubscriptionService-->UI: subscription
+  UI->>SubscriptionService: create_subscription("Netflix", 9.90, 27.6.2023)
+  SubscriptionService->>subscription: Subscription(testaaja.user_id, "Netflix", 9.90, 27.6.2023)
+  SubscriptionService->>SubscriptionRepository: create(subscription)
+  SubscriptionRepository-->>SubscriptionService: subscription
+  SubscriptionService-->>UI: subscription
   UI->>UI: show_message("New subscription added succesfully.Please wait.")
   UI->>UI: show_application_view()
 ```
