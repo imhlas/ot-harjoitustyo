@@ -21,6 +21,8 @@ Mikäli käyttäjätunnus on jo olemassa, kirjautuminen onnistuu syöttämällä
 ## Uuden käyttäjän luominen
 Siirryttyäsi kirjautumisnäkymästä tunnuksenluontinäkymään, voidaan uusi käyttäjätunnus luoda syöttämällä toivottu käyttäjätunnus ja salasana niille varattuihin kenttiin ja painamalla "Create user" -painiketta.
 
+![](./kuvat/kayttoohje_create_user.png)
+
 Sovellus antaa ilmoituksen, mikäli käyttäjätunnuksen luonti on onnistunut ja siirtyy tämän jälkeen automaattisesti takaisin kirjautumisnäkymään. 
 ## Tilausnäkymä
 Kirjautumisnäkymästä päästään olemassaolevilla tunnuksilla kijautumaan tilausnäkymään, jossa nähdään käyttäjän voimassaolevat tilaukset:
