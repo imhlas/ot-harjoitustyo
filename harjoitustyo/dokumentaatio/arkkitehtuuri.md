@@ -39,7 +39,9 @@ classDiagram
 Sovelluksen toiminnasta vastaa luokan SubscriptionService olio. Käyttäjien ja tilausten tietojen tallennus tapahtuu SQLite -tietokantaan luokkien UserRepository ja SubscriptionRepository kautta.
 
 ## Tietojen pysyväistallennus
-Pakkauksessa *repositories* sijaitsevat luokat *UserRepository* ja *SubscriptionRepository* vastaavat tietojen tallennuksesta SQLite-tietokantaan. Luokat noudattavat Repository-suunnitteumallia ja ne voidaan tarvittaessa korvata uusilla toteutuksilla. Sovelluslogiikan testaamisessa ei tallenneta lainkaan tietokantaan, vaan testit tallentavat tiedot suoraan keskusmuistiin.
+Pakkauksessa *repositories* sijaitsevat luokat *UserRepository* ja *SubscriptionRepository* vastaavat tietojen tallennuksesta SQLite-tietokantaan. Luokat noudattavat Repository-suunnittelumallia ja ne voidaan tarvittaessa korvata uusilla toteutuksilla. 
+
+Sovelluslogiikan testaamisessa tietoja ei tallenneta lainkaan tietokantaan, vaan testit tallentavat tiedot suoraan keskusmuistiin.
 
 ## Päätoiminnallisuudet
 Seuraavissa alaluvuissa kuvataan sovelluksen kolme tärkeintä päätoiminnallisuutta sekvenssikaavioiden avulla.
@@ -64,7 +66,7 @@ sequenceDiagram
   UI->>UI: show_message("User testaaja created succesfully. Please wait.")
   UI->>UI: show_login_view()
 ```
-*"Create user"* -painikkeen painaminen aktivoi tapahtumankäsittelijän kutsumaan sovelluslogiikan *SubscriptionService* metodia *create_user* antaen parametreiksi halutun käyttäjätunnuksen ja salasanan. Sovelluslogiikka selvittää *UserRepository*:a hyödyntämällä, onko käyttäjätunnus jo olemassa. Mikäli on, sovelluslogiikka tuottaa *UsernameExistsError*-poikkeuksen.
+*Create user* -painikkeen painaminen aktivoi tapahtumankäsittelijän kutsumaan sovelluslogiikan *SubscriptionService* metodia *create_user* antaen parametreiksi halutun käyttäjätunnuksen ja salasanan. Sovelluslogiikka selvittää *UserRepository*:a hyödyntämällä, onko käyttäjätunnus jo olemassa. Mikäli on, sovelluslogiikka tuottaa *UsernameExistsError*-poikkeuksen.
 
 Mikäli haluttua käyttäjätunnusta ei ole käytössä, sovelluslogiikka luo uuden *User*-olion ja tallentaa lähettämällä kutsun *UserRepository*:n metodille *create_user*. Tapahtumankäsittelijä välittää käyttäjälle viestin käyttäjän onnistuneesta luonnista ja pyytää käyttäjää odottamaan. Tämän jälkeen käyttöliittymän näkymä palaa takaisin *LoginView* -näkymään. Käyttäjää edellytetään kirjautumaan erikseen sisään juuri luomillaan tunnuksilla.
 ### Käyttäjän kirjautuminen
@@ -89,13 +91,13 @@ Mikäli tietokannasta ei löydy kyseistä riviä eli käyttäjää, palautuu Non
 
 Jos käyttäjä löytyy, käyttöliittymä vaihtaa näkymäksi *CreateApplicationView*:n, joka avaa käyttäjälle sovelluksen päänäkymän sekä näyttää mahdolliset aiemmin lisätyt tilaukset.
 ### Uuden tilauksen lisääminen
-Sovelluksen päänäkymässä käyttäjä pääsee lisäämään uusia tilauksia klikkaamalla painiketta *"Add new subscription"*. Käyttöliittymä vaihtuu tällöin *CreateSubscriptionView* -näkymään, jonka jälkeen sovelluksen kontrolli etenee seuraavasti:
+Sovelluksen päänäkymässä käyttäjä pääsee lisäämään uusia tilauksia klikkaamalla painiketta *Add new subscription*. Käyttöliittymä vaihtuu tällöin *CreateSubscriptionView* -näkymään, jonka jälkeen sovelluksen kontrolli etenee seuraavasti:
 ```mermaid
 sequenceDiagram
   actor User
   participant UI
   participant SubscriptionService
-  participant SubsciptionRepository
+  participant SubscriptionRepository
   participant subscription
   User->>UI: click "Add new subscription"
   UI->>UI: show_create_subscription_view()
