@@ -3,7 +3,18 @@ from services.subscription_service import subscription_service, UsernameExistsEr
 
 
 class CreateUserView:
+    """Käyttäjän rekisteröitymisestä vastaava näkymä."""
+
     def __init__(self, root, show_login_view):
+        """Luokan konstruktori, mikä luo uuden rekisteröitymisnäkymän.
+
+        Args:
+            root:
+                TKinter-elementti, jonka sisään näkymä alustetaan.
+            show_login_view:
+                Kutsuttava-arvo, jota kutsutaan kun siirrytään kirjautumisnäkymään.
+        """
+
         self._root = root
         self._show_login_view = show_login_view
         self._frame = None
@@ -15,12 +26,19 @@ class CreateUserView:
         self._initialize()
 
     def pack(self):
+        """"Näyttää näkymän."""
+
         self._frame.place(relx=0.5, rely=0.5, anchor='center')
 
     def destroy(self):
+        """Tuhoaa näkymän."""
+
         self._frame.destroy()
 
     def _create_user_handler(self):
+        """Noutaa syötteet käyttäjätunnuksen ja salasanan kentistä ja yrittää luoda niistä uuden käyttäjän.
+           Tuottaa virheen, mikäli käyttäjätunnus on jo olemassa."""
+
         username_value = self._username_entry.get()
         password_value = self._password_entry.get()
 
@@ -33,10 +51,14 @@ class CreateUserView:
             self._show_message(f"Username {username_value} already exists")
 
     def _show_message(self, message):
+        """Näyttää halutun viestin näkymässä."""
+
         self._message_variable.set(message)
         self._message_label.grid()
 
     def _initialize_username_and_password_field(self):
+        """Alustaa näkymään kentät käyttäjätunnuksen ja salasanan syötteille"""
+
         username_label = ttk.Label(master=self._frame, text="Username")
         self._username_entry = ttk.Entry(master=self._frame)
 
@@ -50,6 +72,8 @@ class CreateUserView:
         self._password_entry.grid(row=2, column=1, columnspan=3, pady=5)
 
     def _initialize(self):
+        """Alustaa näkymän."""
+
         self._frame = ttk.Frame(master=self._root)
 
         self._message_variable = StringVar(self._frame)

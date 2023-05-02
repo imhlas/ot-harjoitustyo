@@ -3,7 +3,18 @@ from datetime import datetime
 from services.subscription_service import subscription_service
 
 class SubscriptionView:
+    """Tilauksien listauksesta vastaava näkymä."""
+
     def __init__(self, root, subscriptions):
+        """Luokan konstruktori, mikä luo uuden tilausnäkymän.
+
+        Args:
+            root:
+                TKinter-elementti, jonka sisään näkymä alustetaan.
+            subscriptions:
+                Lista Subscription-olioita, jotka näkymässä näytetään
+        """
+
         self._root = root
         self._subscriptions = subscriptions
         self._frame = None
@@ -11,12 +22,18 @@ class SubscriptionView:
         self._initialize()
 
     def pack(self):
+        """"Näyttää näkymän."""
+
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """"Tuhoaa näkymän."""
+
         self._frame.destroy()
 
     def _initialize_subscription(self, subscription):
+        """Listaa tilaukset näkymään."""
+
         item_frame = ttk.Frame(master=self._frame)
 
         name_label = ttk.Label(master=item_frame, text=subscription.name)
@@ -33,13 +50,28 @@ class SubscriptionView:
         item_frame.pack(fill=constants.X)
 
     def _initialize(self):
+        """Alustaa näkymän."""
+
         self._frame = ttk.Frame(master=self._root)
 
         for subscription in self._subscriptions:
             self._initialize_subscription(subscription)
 
 class CreateApplicationView:
+    """Tilausten listauksesta ja lisäämisestä vastaava näkymä."""
+
     def __init__(self, root, show_login_view, show_create_subscription_view):
+        """Luokan konstruktori, mikä luo uuden tilausnäkymän.
+
+        Args:
+            root:
+                TKinter-elementti, jonka sisään näkymä alustetaan.
+            show_login_view:
+                Kutsuttava arvo, jota kutsutaan kun käyttäjä kirjautuu ulos.
+            show_create_subscription_view:
+                Kutsuttava arvo, jota kutsutaan kun käyttäjä haluaa lisätä uuden tilauksen.
+        """
+
         self._root = root
         self._show_login_view = show_login_view
         self._show_create_subscription_view = show_create_subscription_view
@@ -51,21 +83,29 @@ class CreateApplicationView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän."""
+
         self._frame.pack()
 
     def destroy(self):
+        """Tuhoaa näkymän."""
+
         self._frame.destroy()
 
     def _logout_handler(self):
+        """Kirjaa käyttäjän ulos ja kutsuu kirjautumisnäkymään siirtymisestä vastaavaa arvoa."""
+
         subscription_service.logout()
         self._show_login_view()
 
     def _initialize_header(self):
+        """Alustaa näkymän otsikkotason tekstit."""
+
         heading_label = ttk.Label(
             master=self._frame, text=f"Hello {self._user.username}!", font=("Arial", 14))
 
         heading_label.grid(row=0, column=0, sticky=constants.W, pady=5)
- 
+
         separator = ttk.Separator(self._frame, orient='horizontal')
         separator.grid(row=1, column=0, columnspan=2, pady=10, sticky=constants.EW)
 
@@ -76,6 +116,8 @@ class CreateApplicationView:
 
 
     def _initialize_subscriptions(self):
+        """Listaa tilaukset näkymään."""
+
         subscriptions = subscription_service.get_subscriptions()
 
         if subscriptions:
@@ -87,6 +129,7 @@ class CreateApplicationView:
             no_subscriptions_label.pack()
 
     def _initialize_footer(self):
+        """Alustaa näkymän alatason tekstit ja painikkeet."""
 
         logout_button = ttk.Button(
             master=self._frame, text="Logout", command=self._logout_handler)
@@ -101,6 +144,8 @@ class CreateApplicationView:
 
 
     def _initialize(self):
+        """Alustaa näkymän."""
+
         self._frame = ttk.Frame(master=self._root)
 
         self._initialize_header()

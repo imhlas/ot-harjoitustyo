@@ -2,7 +2,20 @@ from tkinter import Tk, ttk, constants, StringVar
 from services.subscription_service import subscription_service, InvalidCredentialsError
 
 class LoginView:
+    """Käyttäjän kirjautumisesta vastaava näkymä."""
+
     def __init__(self, root, handle_login, handle_create_user_view):
+        """Luokan konstruktori, mikä luo uuden kirjautumisnäkymän.
+
+        Args:
+            root:
+                TKinter-elementti, jonka sisään näkymä alustetaan.
+            handle_login:
+                Kutsuttava-arvo, jota kutsutaan kun käyttäjä kirjautuu sisään.
+            handle_create_user_view:
+                Kutsuttava-arvo, jota kutsutaan kun siirrytään uuden käyttäjän luonnista vastaavaan näkymään.
+        """
+
         self._root = root
         self._handle_login = handle_login
         self._handle_create_user_view = handle_create_user_view
@@ -15,12 +28,19 @@ class LoginView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän."""
+
         self._frame.place(relx=0.5, rely=0.5, anchor='center')
 
     def destroy(self):
+        """Tuhoaa näkymän."""
+
         self._frame.destroy()
 
     def _login_handler(self):
+        """Noutaa syötteet käyttäjätunnuksen ja salasanan kentistä ja yrittää kirjautua niillä sisään.
+           Tuottaa virheen, mikäli käyttäjätunnus tai salasana ei vastaa yhtäkään rekisteröitynyttä käyttäjää."""
+
         username_value = self._username_entry.get()
         password_value = self._password_entry.get()
 
@@ -31,10 +51,14 @@ class LoginView:
             self._show_message("Invalid username or password")
 
     def _show_message(self, message):
+        """Näyttää halutun viestin näkymässä."""
+
         self._message_variable.set(message)
         self._message_label.grid()
 
     def _initialize_username_and_password_field(self):
+        """Alustaa näkymään kentät käyttäjätunnuksen ja salasanan syötteille"""
+
         username_label = ttk.Label(master=self._frame, text="Username")
         self._username_entry = ttk.Entry(master=self._frame)
 
@@ -48,6 +72,7 @@ class LoginView:
         self._password_entry.grid(row=2, column=1, columnspan=3, pady=5)
 
     def _initialize(self):
+        """Alustaa näkymän"""
         self._frame = ttk.Frame(master=self._root)
 
         self._message_variable = StringVar(self._frame)

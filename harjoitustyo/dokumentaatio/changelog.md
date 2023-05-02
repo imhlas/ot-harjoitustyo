@@ -18,3 +18,7 @@
 - Käyttäjä voi kirjautua ulos
 - Lisätty SubscriptionRepository -luokka, joka vastaa tilausten tallennuksesta tietokantaan
 - Lisätty graafiseen käyttöliittymään näkymä uusien tilauksien luonnille
+
+##Viikko 6
+- Muokattu repository- ja service -luokkien koodeja selkeämmiksi
+- Paranneltu käyttöliittymästä vastaavaa koodia

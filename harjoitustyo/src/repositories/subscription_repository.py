@@ -12,10 +12,32 @@ def database_rows_into_subscriptions(rows):
     return subscriptions
 
 class SubscriptionRepository:
+    """Luokka, jonka avulla hoidetaan tilauksiin liittyviä tietokantaoperaatioita.
+
+    Attributes:
+        connection: Tietokantayhteyden Connection-olio.
+    """
+
+
     def __init__(self, connection):
+        """Luokan konstruktori.
+
+        Args:
+            connection: Tietokantayhteyden Connection-olio.
+        """
+
         self._connection = connection
 
     def find_users_subscriptions(self, user):
+        """Palauttaa käyttäjän tilaukset.
+
+        Args:
+            user: User-olio, jonka tilaukset palautetaan.
+
+        Returns:
+            Palauttaa listan Subscription-olioita.
+        """
+
         cursor = self._connection.cursor()
         cursor.execute(
             "SELECT * FROM subscriptions  WHERE user_id=?", (user.user_id,))
@@ -26,6 +48,15 @@ class SubscriptionRepository:
         return database_rows_into_subscriptions(rows)
 
     def create(self, subscription):
+        """Tallentaa tilauksen tietokantaan.
+
+        Args:
+            subscription: Tallennettava tilaus Subscription-oliona.
+
+        Returns:
+            Tallennettu tilaus Subsription-oliona.
+        """
+
         cursor = self._connection.cursor()
         cursor.execute(
             "INSERT INTO subscriptions (user_id, name, price, end_date) values (?, ?, ?, ?)",

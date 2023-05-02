@@ -13,4 +13,5 @@
 | 22.4  |  4   | Arkkitehtuurikuvauksen laajennus, sovelluslogiikan laajentaminen SubscriptionsRepositoryn osalta
 | 23.4  |  4   | Graafisen käyttöliittymän laajentaminen ja parantelu
 | 28.4  |  5   | Arkkitehtuurikuvaus ja käyttöohje
-| YHT   |  38  |
+| 2.5   |  4   | Docsrting -dokumentointi, tietokantaoperaatioista vastaavan koodin parantelu, käyttöliittymästä vastaavan koodin parantelu
+| YHT   |  42  |
