@@ -122,6 +122,29 @@ class SubscriptionService:
 
         return subscriptions
 
+    def get_sum_of_subscriptions(self, subscriptions):
+        """Palauttaa tilauksien summan.
+
+        Args:
+            subscriptions: Lista tilauksista Subscription-olioina.
+        Returns:
+            Tilauksien summa.
+        """
+
+
+        sum = 0
+        for subscription in subscriptions:
+            sum += subscription.price
+
+        return sum
+
+    def set_subscription_ending(self, subscription_id):
+        """Päivittää tilauksen päättyväksi.
+        """
+
+        self._subscription_repository.update_state_ending(subscription_id)
+
+
     def logout(self):
         """Kirjaa nykyisen käyttäjän ulos. """
 

@@ -37,4 +37,23 @@ class TestSubscriptionRepository(unittest.TestCase):
 
         self.assertEqual(subscriptions, None)
 
+    def test_update_subscription_state_to_ending(self):
+        subscription_repository.create(self.subscription1)
+        subscriptions = subscription_repository.find_users_subscriptions(self.kayttaja1)
+
+
+        self.assertEqual(len(subscriptions), 1)
+        self.assertEqual(subscriptions[0].state, "active")
+
+        subscription_repository.update_state_ending(subscriptions[0].subscription_id)
+
+        subscriptions = subscription_repository.find_users_subscriptions(self.kayttaja1)
+
+        self.assertEqual(len(subscriptions), 1)
+        self.assertEqual(subscriptions[0].state, "ending")
+
+    def test_update_subscription_state_to_ended(self):
+        pass
+
+
 

@@ -17,7 +17,9 @@ def create_tables(connection):
             user_id TEXT,
             name TEXT,
             price REAL,
-            end_date DATE
+            end_date DATE,
+            state TEXT,
+            subscription_id INTEGER PRIMARY KEY AUTOINCREMENT
         );
     ''')
 

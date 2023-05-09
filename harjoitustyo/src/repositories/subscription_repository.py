@@ -6,7 +6,8 @@ def database_rows_into_subscriptions(rows):
     subscriptions = []
 
     for row in rows:
-        subscription = Subscription(row["user_id"], row["name"], row["price"], row["end_date"])
+        subscription = Subscription(row["user_id"], row["name"], row["price"], row["end_date"], row["state"],
+        row["subscription_id"])
         subscriptions.append(subscription)
 
     return subscriptions
@@ -29,7 +30,7 @@ class SubscriptionRepository:
         self._connection = connection
 
     def find_users_subscriptions(self, user):
-        """Palauttaa käyttäjän tilaukset.
+        """Palauttaa käyttäjän aktiiviset tilaukset.
 
         Args:
             user: User-olio, jonka tilaukset palautetaan.
@@ -40,7 +41,7 @@ class SubscriptionRepository:
 
         cursor = self._connection.cursor()
         cursor.execute(
-            "SELECT * FROM subscriptions  WHERE user_id=?", (user.user_id,))
+            "SELECT * FROM subscriptions  WHERE user_id=? AND state != 'ended'", (user.user_id,))
         rows = cursor.fetchall()
 
         if len(rows) == 0:
@@ -59,12 +60,35 @@ class SubscriptionRepository:
 
         cursor = self._connection.cursor()
         cursor.execute(
-            "INSERT INTO subscriptions (user_id, name, price, end_date) values (?, ?, ?, ?)",
+            "INSERT INTO subscriptions (user_id, name, price, end_date, state) values (?, ?, ?, ?, ?)",
             (subscription.user_id, subscription.name, subscription.price,
-            datetime.strptime(subscription.end_date, "%d.%m.%Y")))
+            datetime.strptime(subscription.end_date, "%d.%m.%Y"), subscription.state))
 
         self._connection.commit()
 
         return subscription
+
+    def update_state_ending(self,subscription_id):
+        """Muuttaa tilauksen päättyväksi
+
+        Args:
+            subscription_id: Muokattavan tilauksen tunniste.
+
+        """
+        cursor = self._connection.cursor()
+        cursor.execute(
+            "UPDATE subscriptions SET state='ending' WHERE subscription_id = ?", (subscription_id,))
+
+        self._connection.commit()
+
+
+    def update_ending_subscriptions(self):
+        """Muuttaa tilauksen tilan päättyneeksi."""
+
+        cursor = self._connection.cursor()
+        cursor.execute(
+            "UPDATE subscriptions SET state='ended' WHERE end_date >= ? AND state='ending'",
+            (datetime.now().strftime('%Y-%m-%d'),))
+        self._connection.commit()
 
 subscription_repository = SubscriptionRepository(get_database_connection())

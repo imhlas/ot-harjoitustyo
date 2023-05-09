@@ -59,6 +59,7 @@ class UI:
 
         self._current_view.pack()
 
+
     def _show_create_subscription_view(self):
         """Avaa uuden tilauksen luonnista vastaavan näkymän"""
 

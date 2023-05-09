@@ -4,8 +4,7 @@ from ui.ui import UI
 
 def main():
     window = Tk()
-    window.geometry("800x800")
-    window.configure(bg='#333333')
+    window.geometry("900x900")
     window.title("Subscription Manager App")
 
     ui_view = UI(window)
