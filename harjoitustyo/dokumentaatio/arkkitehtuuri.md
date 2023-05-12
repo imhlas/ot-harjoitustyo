@@ -5,12 +5,12 @@ Ohjelman rakennetta havainnollistaa seuraava pakkauskaavio:
 ![](./kuvat/pakkaus.png)
 
 Sovelluksen koodi on organisoitu kerrosarkkitehtuurin periaatteiden mukaisesti:
-- Käyttöliittymästä vastaava koodi sijaitsee pakkauksessa *ui*.
-- Sovelluslogiikasta vastaava koodi löytyy pakkauksen *services* sisältä.
-- Tietojen pysyväistallennuksesta vastaava koodi sijaitsee pakkauksessa *repositories*.
-- Sovelluksen varsinaisia tietokohteita kuvaavat luokat on säilötty pakkaukseen *entities*.
+- Käyttöliittymästä vastaava koodi sijaitsee pakkauksessa [ui](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src/ui).
+- Sovelluslogiikasta vastaava koodi löytyy pakkauksen [services](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src/servies) sisältä.
+- Tietojen pysyväistallennuksesta vastaava koodi sijaitsee pakkauksessa [repositories](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src/repositories).
+- Sovelluksen varsinaisia tietokohteita kuvaavat luokat on säilötty pakkaukseen [entities](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src/entities).
 
-Pakkausten väliset *riippuvuudet* on merkitty kaavioon katkoviivoilla. Ohjelman rakenteeseen ja eri pakkauksiin pääsee tutustumaan tarkemmin [tästä](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src).
+Pakkausten väliset *riippuvuudet* on merkitty kaavioon katkoviivoilla.
 
 ## Käyttöliittymä
 Käyttöliittymä sisältää neljä erillistä näkymää:
@@ -37,10 +37,11 @@ classDiagram
         name
         price
         end_date
+        subscription_id
       }
       Subscription "*" --> "1" User    
 ```
-Sovelluksen toiminnasta vastaa luokan SubscriptionService olio. Käyttäjien ja tilausten tietojen tallennus tapahtuu SQLite -tietokantaan luokkien UserRepository ja SubscriptionRepository kautta. Sovelluslogiikka tarjoaa käyttöliittymälle seuraavat metodit:
+Sovelluksen toiminnasta vastaa luokan *SubscriptionService* olio. Käyttäjien ja tilausten tietojen tallennus tapahtuu SQLite -tietokantaan luokkien *UserRepository* ja *SubscriptionRepository* kautta. Sovelluslogiikka tarjoaa käyttöliittymälle seuraavat metodit:
 
 - *create_user(username, password)*
 - *login(username, password)*
@@ -129,7 +130,10 @@ Tapahtumankäsittelijä kutsuu sovelluslogiikan *SubscriptionService* metodia *c
 
 Mikäli tiedot tallennetaan tietokantaan onnistuneesti, käyttöliittymä välittää tästä käyttäjälle viestin ja pyytää odottamaan. Tämän jälkeen käyttöliittymä siirtyy takaisin sovelluksen päänäkymään *CreateApplicationView*.
 
+### Muut toiminnallisuudet
+Yllä kuvattujen päätoiminnallisuuksien lisäksi sovellus sisältää toiminnallisuuden, jolla käyttäjä voi merkitä aktiivisen tilauksensa päättyväksi. Tämä toimii vastaavalla periaatteella päätoiminnallisuuksien kanssa, eli käyttöliittymän tapahtumankäsittelijä kutsuu sovelluslogiikan metodia, joka päivittää tilauksen tilan aktiivisesta päättyväksi. Käyytöliittymän näkymään päivittyy tämän jälkeen tilauksen vaihtunut tila (aktiivinen->päättyvä).
+
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
-# Käyttöliittymä
+### Käyttöliittymä
 Sovelluksen graafiseen käyttöliittymään olisi saanut tehtyä käyttäjän käyttömukavuutta tehostavia parannuksia, mutta ne jäivät aikataulullisista syistä toteuttamatta. 
