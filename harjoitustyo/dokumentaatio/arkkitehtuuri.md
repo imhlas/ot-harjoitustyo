@@ -1,15 +1,11 @@
-# Arkkitehtuurikuvaus
+# Käyttöohje
 ## Ohjelman rakenne
-```mermaid
- classDiagram
-      Subscription "*" -- "1" User
-      UserRepository "1" -- "*" User
-      SubscriptionRepository "1" -- "*" Subscription
-      SubscriptionService "1" -- "1" SubscriptionRepository
-      SubscriptionService "1" -- "1" UserRepository
-      SubscriptionService ..> User
-      SubscriptionService ..> Subscription
-```
+Ohjelman rakennetta havainnollistaa seuraava pakkauskaavio:
+
+
+Sovelluksen koodi on organisoitu kerrosarkkitehtuurin periaatteiden mukaisesti. Käyttöliittymästä vastaava koodi löytyy pakkauksen *ui* sisältä, sovelluslogiikka sijaitsee pakkauksessa *services* ja tietojen pysyväistallennuksesta vastaava koodi löytyy pakkauksen *repositories* sisältä.
+Pakkausten väliset *riippuvuudet* on merkitty kaavioon katkoviivoilla.
+
 ## Käyttöliittymä
 Käyttöliittymä sisältää neljä erillistä näkymää:
 
@@ -17,6 +13,8 @@ Käyttöliittymä sisältää neljä erillistä näkymää:
 - Uuden käyttäjän luominen
 - Tilausnäkymä *(sovelluksen päänäkymä)*
 - Uuden tilauksen luominen
+
+Kaikki näkymät ovat toteutettu pakkauksen *ui* sisälle omina luokkinaan. Pakkauksesta löytyy myös näkymien vaihtoja hallitseva luokka *(ui)*. Eri näkymien painikkeet joko aktivoivat näitä näkymien vaihtoja ja avaavat uusia toimintoja, tai kutsuvat sovelluslogiikasta vastaavan *SubscriptionService*-luokan metodeja. Näin ollen sovelluksen käyttöliittymä ja sovelluslogiikka toimivat erillään toisistaan.
  
 ## Sovelluslogiikka
 Sovelluslogiikassa ovat käytössä luokat User ja Subscription, jotka kuvaavat käyttäjiä ja heidän aktiivisia tilauksiaan:
@@ -36,8 +34,20 @@ classDiagram
       }
       Subscription "*" --> "1" User    
 ```
-Sovelluksen toiminnasta vastaa luokan SubscriptionService olio. Käyttäjien ja tilausten tietojen tallennus tapahtuu SQLite -tietokantaan luokkien UserRepository ja SubscriptionRepository kautta.
+Sovelluksen toiminnasta vastaa luokan SubscriptionService olio. Käyttäjien ja tilausten tietojen tallennus tapahtuu SQLite -tietokantaan luokkien UserRepository ja SubscriptionRepository kautta. Sovelluslogiikka tarjoaa käyttöliittymälle seuraavat metodit:
 
+- *create_user(username, password)*
+- *login(username, password)*
+- *create_subscription(name, price, end_date)*
+- *get_subscriptions()*
+- *get_sum_of_subscriptions()*
+- *set_subscription_ending()*
+- *logout()*
+
+*SubscriptionService*-oliolla on riippuvuus pakkauksessa *repositories* sijaitseviin luokkiin *UserRepository* ja *SubscriptionRepository*, jotka puolestaan ovat yhteydessä sovelluksen oleellista tietosisältöä edustaviin luokkiin *User* ja *Subscription*.
+Sovelluksen luokkien suhteita sekä niiden sijaintia sovelluksen rakenteessa kuvataan alla laajennetulla versiolla pakkauskaaviosta, johon on lisätty myös pakkausten sisällä olevat luokat.
+
+![](./kuvat/pakkauskaavio.PNG)
 ## Tietojen pysyväistallennus
 Pakkauksessa *repositories* sijaitsevat luokat *UserRepository* ja *SubscriptionRepository* vastaavat tietojen tallennuksesta SQLite-tietokantaan. Luokat noudattavat Repository-suunnittelumallia ja ne voidaan tarvittaessa korvata uusilla toteutuksilla. 
 

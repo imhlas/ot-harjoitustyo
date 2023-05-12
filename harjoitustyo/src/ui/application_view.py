@@ -33,18 +33,15 @@ class SubscriptionView:
         self._frame.destroy()
 
     def _initialize_subscription_title(self):
-        title_frame = ttk.Frame(master=self._frame)
 
         name_title = ttk.Label(
-            master=title_frame, text="Subscription name", font=15)
+            master=self._frame, text="Subscription name", font=15)
 
-        price_title = ttk.Label(master=title_frame,text="Subscription price",font=15)
+        price_title = ttk.Label(master=self._frame,text="Subscription price",font=15)
 
-        end_date_title = ttk.Label(master=title_frame,text="Next billing",font=15)
+        end_date_title = ttk.Label(master=self._frame,text="Next billing date",font=15)
 
-        state_title = ttk.Label(master=title_frame, text="State", font=15)
-
-        button_title = ttk.Label(master=title_frame, text="State options")
+        state_title = ttk.Label(master=self._frame, text="State", font=15)
 
         name_title.grid(row=0,column=0,columnspan=3,sticky=constants.EW,padx=5,pady=5)
 
@@ -54,39 +51,31 @@ class SubscriptionView:
 
         state_title.grid(row=0, column=9, columnspan=3, sticky=constants.EW, padx=5, pady=5)
 
-        button_title.grid(row=0, column=12, columnspan=2, sticky=constants.EW, padx=5,pady=5)
-
-        title_frame.pack(fill=constants.X)
-
-    def _initialize_subscription(self, subscription):
+    def _initialize_subscription(self, subscription, row):
         """Listaa tilaukset näkymään."""
 
-        item_frame = ttk.Frame(master=self._frame)
+        name_label = ttk.Label(master=self._frame, text=subscription.name)
+        name_label.grid(row=row, column=0, columnspan=3, padx=5, pady=5, sticky=constants.W)
 
-        name_label = ttk.Label(master=item_frame, text=subscription.name)
-        name_label.grid(row=0, column=0, columnspan=3, padx=5, pady=5, sticky=constants.W)
-
-        price_label = ttk.Label(master=item_frame, text="{:.2f}€".format(float(subscription.price)).replace('.', ','))
-        price_label.grid(row=0, column=3, columnspan=3, padx=5, pady=5, sticky=constants.W)
+        price_label = ttk.Label(master=self._frame, text="{:.2f}€".format(float(subscription.price)).replace('.', ','))
+        price_label.grid(row=row, column=3, columnspan=3, padx=5, pady=5, sticky=constants.W)
 
         end_date = datetime.strptime(subscription.end_date, '%Y-%m-%d %H:%M:%S')
-        end_date_label = ttk.Label(master=item_frame, text=end_date.strftime('%d-%m-%Y'))
-        end_date_label.grid(row=0, column=6, columnspan=3, padx=5, pady=5, sticky=constants.W)
+        end_date_label = ttk.Label(master=self._frame, text=end_date.strftime('%d-%m-%Y'))
+        end_date_label.grid(row=row, column=6, columnspan=3, padx=5, pady=5, sticky=constants.W)
 
         if subscription.state == 'active':
-            state_label = ttk.Label(master=item_frame, text=subscription.state)
-            state_label.grid(row=0, column=9, columnspan=3, padx=5, pady=5, sticky=constants.W)
-            set_ending_button = ttk.Button(master=item_frame, text="Set ending",
+            state_label = ttk.Label(master=self._frame, text=subscription.state.upper())
+            state_label.grid(row=row, column=9, columnspan=3, padx=5, pady=5, sticky=constants.W)
+            set_ending_button = ttk.Button(master=self._frame, text="Set ending",
                 command=lambda:self._handle_set_subscription_ending(subscription.subscription_id))
-            set_ending_button.grid(row=0, column=12, columnspan=2, padx=5, pady=5, sticky=constants.W)
+            set_ending_button.grid(row=row, column=12, columnspan=2, padx=5, pady=5, sticky=constants.W)
         else:
-            state_label = ttk.Label(master=item_frame, text=subscription.state, foreground="red")
-            state_label.grid(row=0, column=9, columnspan=3, padx=5, pady=5, sticky=constants.W)
-            set_ending_button = ttk.Button(master=item_frame, text=" ")
-            set_ending_button.grid(row=0, column=12, columnspan=2, padx=5, pady=5, sticky=constants.W)
+            state_label = ttk.Label(master=self._frame, text=subscription.state.upper(), foreground="red")
+            state_label.grid(row=row, column=9, columnspan=3, padx=5, pady=5, sticky=constants.W)
 
-        item_frame.grid_columnconfigure(0, weight=10, minsize=200)
-        item_frame.pack(fill=constants.X)
+        self._frame.grid_columnconfigure(0, weight=10, minsize=200)
+        self._frame.pack(fill=constants.X)
 
     def _initialize(self):
         """Alustaa näkymän."""
@@ -94,10 +83,10 @@ class SubscriptionView:
         self._frame = ttk.Frame(master=self._root)
 
         self._initialize_subscription_title()
-
+        row = 1
         for subscription in self._subscriptions:
-            self._initialize_subscription(subscription)
-
+            self._initialize_subscription(subscription,row)
+            row += 1
 class CreateApplicationView:
     """Tilausten listauksesta ja lisäämisestä vastaava näkymä."""
 
@@ -152,7 +141,7 @@ class CreateApplicationView:
         total_price.grid(padx=5, pady=5)
 
     def _initialize_header(self):
-        """Alustaa näkymän otsikkotason tekstit."""
+        """Alustaa näkymän otsikkotason tekstit ja painikkeet."""
 
         heading_label = ttk.Label(
             master=self._frame, text=f"Hello {self._user.username}!", font=("Arial", 14))
@@ -166,6 +155,12 @@ class CreateApplicationView:
             sum = 0.0
 
         self._initialize_sum_of_subscriptions(sum)
+
+        logout_button = ttk.Button(
+            master=self._frame, text="Logout", command=self._logout_handler)
+
+        logout_button.grid(row=0, column=1, padx=5, pady=5, sticky=constants.EW)
+
 
     def _initialize_subscriptions(self):
         """Listaa tilaukset näkymään."""
@@ -185,12 +180,6 @@ class CreateApplicationView:
 
     def _initialize_footer(self):
         """Alustaa näkymän alatason tekstit ja painikkeet."""
-
-        logout_button = ttk.Button(
-            master=self._frame, text="Logout", command=self._logout_handler)
-
-        logout_button.grid(row=5, column=0, padx=5, pady=5, sticky=constants.EW)
-
 
         add_subscription_button = ttk.Button(master=self._frame, text="Add new Subscription",
             command=self._show_create_subscription_view)
