@@ -6,7 +6,6 @@ from services.subscription_service import (
 
 
 class FakeUserRepository:
-    # tallennetaan testauksessa käyttäjät listaan, jotta tietokantayhteyttä ei tarvita service-koodin testauksessa
     def __init__(self):
         self.users = []
 

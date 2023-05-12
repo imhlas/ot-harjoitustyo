@@ -1,5 +1,11 @@
 # Subscription Manager App
-Sovelluksen avulla käyttäjät voivat seurata voimassaolevia tilauksiaan eri palveluihin. Käyttäjät näkevät profiilistaan voimassaolevat tilaukset, niiden hinnan sekä seuraavan veloitusajankohdan. Käyttäjät voivat lisätä profiiliinsa uusia tilauksia sekä merkitä voimassaolevia tilauksia päättyviksi.
+Sovelluksen avulla käyttäjät voivat seurata voimassaolevia tilauksiaan eri palveluihin. Käyttäjät näkevät profiilistaan voimassaolevista tilauksistaan seuraavat tiedot:
+- Tilauksen nimi
+- Tilauksen hinta
+- Tilauksen seuraava veloitusajankohta
+- Tilauksen status (aktiivinen/päättyvä)
+
+Lisäksi käyttäjät näkevät kaikkien aktiivisten tilaustensa yhteissumman. Käyttäjät voivat lisätä profiiliinsa uusia tilauksia sekä merkitä voimassaolevia tilauksia päättyviksi.
 
 ## Releases
 - [Viikko 5 release](https://github.com/imhlas/ot-harjoitustyo/releases/tag/viikko5)
@@ -9,6 +15,7 @@ Sovelluksen avulla käyttäjät voivat seurata voimassaolevia tilauksiaan eri pa
 ## Dokumentaatio
 - [Vaatimusmäärittely](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
 - [Arkkitehtuurikuvaus](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/arkkitehtuuri.md)
+- [Testausdokumentti](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/testaus.md)
 - [Työaikakirjanpito](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/changelog.md)
 

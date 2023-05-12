@@ -6,7 +6,7 @@ Ohjelman rakennetta havainnollistaa seuraava pakkauskaavio:
 
 Sovelluksen koodi on organisoitu kerrosarkkitehtuurin periaatteiden mukaisesti:
 - Käyttöliittymästä vastaava koodi sijaitsee pakkauksessa [ui](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src/ui).
-- Sovelluslogiikasta vastaava koodi löytyy pakkauksen [services](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src/servies) sisältä.
+- Sovelluslogiikasta vastaava koodi löytyy pakkauksen [services](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src/services) sisältä.
 - Tietojen pysyväistallennuksesta vastaava koodi sijaitsee pakkauksessa [repositories](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src/repositories).
 - Sovelluksen varsinaisia tietokohteita kuvaavat luokat on säilötty pakkaukseen [entities](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src/entities).
 
