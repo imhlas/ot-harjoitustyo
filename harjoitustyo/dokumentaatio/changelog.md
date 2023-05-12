@@ -22,3 +22,11 @@
 ## Viikko 6
 - Muokattu repository- ja service -luokkien koodeja selkeämmiksi
 - Paranneltu käyttöliittymästä vastaavaa koodia
+
+## Viikko 7
+- Käyttäjä näkee kaikkien tilausten yhteissumman
+- Käyttäjä näkee tilauksen statuksen (aktiivinen/päättyvä)
+- Käyttäjä voi merkitä aktiivisen tilauksen päättyväksi
+- Lisätty erillinen testitietokanta testejä varten
+- Täydennetty testejä siten, että ohjelman kaikki toiminnallisuudet toimivat tarkoituksenmukaisesti sekä oikeiden että väärien syötteiden tapauksissa.
+- Korjattu graafisen käyttöliittymän koodia käyttäjäystävällisemmäksi

@@ -2,9 +2,15 @@
 ## Ohjelman rakenne
 Ohjelman rakennetta havainnollistaa seuraava pakkauskaavio:
 
+![](./kuvat/pakkaus.png)
 
-Sovelluksen koodi on organisoitu kerrosarkkitehtuurin periaatteiden mukaisesti. Käyttöliittymästä vastaava koodi löytyy pakkauksen *ui* sisältä, sovelluslogiikka sijaitsee pakkauksessa *services* ja tietojen pysyväistallennuksesta vastaava koodi löytyy pakkauksen *repositories* sisältä.
-Pakkausten väliset *riippuvuudet* on merkitty kaavioon katkoviivoilla. Ohjelman rakenteeseen pääsee tutustumaan tarkemmin [tästä](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src)
+Sovelluksen koodi on organisoitu kerrosarkkitehtuurin periaatteiden mukaisesti:
+- Käyttöliittymästä vastaava koodi sijaitsee pakkauksessa *ui*.
+- Sovelluslogiikasta vastaava koodi löytyy pakkauksen *services* sisältä.
+- Tietojen pysyväistallennuksesta vastaava koodi sijaitsee pakkauksessa *repositories*.
+- Sovelluksen varsinaisia tietokohteita kuvaavat luokat on säilötty pakkaukseen *entities*.
+
+Pakkausten väliset *riippuvuudet* on merkitty kaavioon katkoviivoilla. Ohjelman rakenteeseen ja eri pakkauksiin pääsee tutustumaan tarkemmin [tästä](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src).
 
 ## Käyttöliittymä
 Käyttöliittymä sisältää neljä erillistä näkymää:
@@ -122,3 +128,8 @@ sequenceDiagram
 Tapahtumankäsittelijä kutsuu sovelluslogiikan *SubscriptionService* metodia *create_subscription*, jolle annetaan parametrina käyttäjän syöttämät tiedot uudesta tilauksesta. Sovelluslogiikka luo uuden *Subscription* -olion ja tallentaa sen tietokantaan kutsumalla *SubscriptionService*:n metodia *create*. 
 
 Mikäli tiedot tallennetaan tietokantaan onnistuneesti, käyttöliittymä välittää tästä käyttäjälle viestin ja pyytää odottamaan. Tämän jälkeen käyttöliittymä siirtyy takaisin sovelluksen päänäkymään *CreateApplicationView*.
+
+## Ohjelman rakenteeseen jääneet heikkoudet
+
+# Käyttöliittymä
+Sovelluksen graafiseen käyttöliittymään olisi saanut tehtyä käyttäjän käyttömukavuutta tehostavia parannuksia, mutta ne jäivät aikataulullisista syistä toteuttamatta. 

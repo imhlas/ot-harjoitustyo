@@ -14,4 +14,8 @@
 | 23.4  |  4   | Graafisen käyttöliittymän laajentaminen ja parantelu
 | 28.4  |  5   | Arkkitehtuurikuvaus ja käyttöohje
 | 2.5   |  4   | Docsrting -dokumentointi, tietokantaoperaatioista vastaavan koodin parantelu, käyttöliittymästä vastaavan koodin parantelu
-| YHT   |  42  |
+| 7.5   |  5   | Tietokantaoperaatioiden ja käyttöliittymän laajennus (tilauksen status ja sen muuttaminen, tilausten yhteissumma) 
+| 9.5   |  3   | Erillisen testitietokannan luonti, ympäristömuuttujat ja konfigurointi
+| 12.5  |  4   | Graafisen käyttöliittymän parantelu, dokumentaation täydentäminen
+
+| YHT   |  54  |
