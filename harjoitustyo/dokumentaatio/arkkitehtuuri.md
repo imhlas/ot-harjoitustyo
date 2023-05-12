@@ -4,7 +4,7 @@ Ohjelman rakennetta havainnollistaa seuraava pakkauskaavio:
 
 
 Sovelluksen koodi on organisoitu kerrosarkkitehtuurin periaatteiden mukaisesti. Käyttöliittymästä vastaava koodi löytyy pakkauksen *ui* sisältä, sovelluslogiikka sijaitsee pakkauksessa *services* ja tietojen pysyväistallennuksesta vastaava koodi löytyy pakkauksen *repositories* sisältä.
-Pakkausten väliset *riippuvuudet* on merkitty kaavioon katkoviivoilla.
+Pakkausten väliset *riippuvuudet* on merkitty kaavioon katkoviivoilla. Ohjelman rakenteeseen pääsee tutustumaan tarkemmin [tästä](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/src)
 
 ## Käyttöliittymä
 Käyttöliittymä sisältää neljä erillistä näkymää:
