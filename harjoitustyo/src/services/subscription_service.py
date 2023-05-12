@@ -15,7 +15,6 @@ class UsernameExistsError(Exception):
 class InvalidCredentialsError(Exception):
     pass
 
-
 class SubscriptionService:
     """Sovelluslogiikasta vastaava luokka."""
 
@@ -132,11 +131,11 @@ class SubscriptionService:
         """
 
 
-        sum = 0
+        sum_of_subscriptions = 0
         for subscription in subscriptions:
-            sum += subscription.price
+            sum_of_subscriptions += subscription.price
 
-        return sum
+        return sum_of_subscriptions
 
     def set_subscription_ending(self, subscription_id):
         """Päivittää tilauksen päättyväksi.

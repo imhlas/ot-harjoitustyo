@@ -46,13 +46,18 @@ class CreateSubscriptionView:
         end_date_value = self._end_date_entry.get()
 
         try:
-            subscription_service.create_subscription(subscription_name_value, subscription_price_value,
+            price_float = float(subscription_price_value)
+        except ValueError:
+            self._show_message("Wrong format in price input")
+
+        try:
+            subscription_service.create_subscription(subscription_name_value, price_float,
                 end_date_value)
             self._show_message(f"New subscription added succesfully.Please wait.")
 
             self._root.after(3000, self._show_application_view)
-        except Exception as e:
-            self._show_message(str(e))
+        except Exception:
+            self._show_message("Invalid input fields")
 
     def _show_message(self, message):
         """Näyttää halutun viestin näkymässä."""
@@ -89,9 +94,9 @@ class CreateSubscriptionView:
 
         self._message_variable = StringVar(self._frame)
         self._message_label = ttk.Label(
-            master=self._frame, textvariable=self._message_variable, foreground="green", font=("Arial", 14, "bold"))
+            master=self._frame, textvariable=self._message_variable, font=("Arial", 12, "bold"))
 
-        self._message_label.grid(row=5, column=1, pady=(10, 0))
+        self._message_label.grid(row=5, column=0, columnspan=3, pady=5)
 
         heading_label = ttk.Label(master=self._frame, text="Add new subscription",
             font=("Arial", 14))

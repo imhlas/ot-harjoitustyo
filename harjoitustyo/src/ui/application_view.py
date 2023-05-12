@@ -40,21 +40,21 @@ class SubscriptionView:
 
         price_title = ttk.Label(master=title_frame,text="Subscription price",font=15)
 
-        end_date_title = ttk.Label(master=title_frame,text="End date",font=15)
+        end_date_title = ttk.Label(master=title_frame,text="Next billing",font=15)
 
         state_title = ttk.Label(master=title_frame, text="State", font=15)
 
         button_title = ttk.Label(master=title_frame, text="State options")
 
-        name_title.grid(row=0,column=0,columnspan=3,sticky=constants.W,padx=5,pady=5)
+        name_title.grid(row=0,column=0,columnspan=3,sticky=constants.EW,padx=5,pady=5)
 
-        price_title.grid(row=0,column=3,columnspan=3,sticky=constants.W,padx=5,pady=5)
+        price_title.grid(row=0,column=3,columnspan=3,sticky=constants.EW,padx=5,pady=5)
 
-        end_date_title.grid(row=0,column=6,columnspan=3,sticky=constants.W,padx=5,pady=5)
+        end_date_title.grid(row=0,column=6,columnspan=3,sticky=constants.EW,padx=5,pady=5)
 
-        state_title.grid(row=0, column=9, columnspan=3, sticky=constants.W, padx=5, pady=5)
+        state_title.grid(row=0, column=9, columnspan=3, sticky=constants.EW, padx=5, pady=5)
 
-        button_title.grid(row=0, column=12, columnspan=2, sticky=constants.W, padx=5,pady=5)
+        button_title.grid(row=0, column=12, columnspan=2, sticky=constants.EW, padx=5,pady=5)
 
         title_frame.pack(fill=constants.X)
 

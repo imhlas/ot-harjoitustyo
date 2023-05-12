@@ -5,3 +5,4 @@ __pycache__
 
 #datafiles
 data/database.sqlite
+data/test_database.sqlite

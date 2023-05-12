@@ -6,7 +6,8 @@ def database_rows_into_subscriptions(rows):
     subscriptions = []
 
     for row in rows:
-        subscription = Subscription(row["user_id"], row["name"], row["price"], row["end_date"], row["state"],
+        subscription = Subscription(row["user_id"], row["name"], row["price"],
+            row["end_date"], row["state"],
         row["subscription_id"])
         subscriptions.append(subscription)
 
@@ -30,7 +31,10 @@ class SubscriptionRepository:
         self._connection = connection
 
     def find_users_subscriptions(self, user):
-        """Palauttaa käyttäjän aktiiviset tilaukset.
+        """Tarkistaa käyttäjän tilauksista,
+           onko jokin päättyväksi merkatuista tilauksista ylittänyt päättymispäivänsä.
+           Mikäli on, muutetaan tilauksen tila päättyneeksi.
+           Tämän jälkeen palautetaan käyttäjän aktiiviset tilaukset.
 
         Args:
             user: User-olio, jonka tilaukset palautetaan.
@@ -40,6 +44,12 @@ class SubscriptionRepository:
         """
 
         cursor = self._connection.cursor()
+
+        cursor.execute(
+            "UPDATE subscriptions SET state='ended' WHERE user_id= ? and end_date < ? AND state='ending'",
+            (user.user_id, datetime.now().strftime('%Y-%m-%d'),))
+        self._connection.commit()
+
         cursor.execute(
             "SELECT * FROM subscriptions  WHERE user_id=? AND state != 'ended'", (user.user_id,))
         rows = cursor.fetchall()
@@ -77,18 +87,10 @@ class SubscriptionRepository:
         """
         cursor = self._connection.cursor()
         cursor.execute(
-            "UPDATE subscriptions SET state='ending' WHERE subscription_id = ?", (subscription_id,))
+            "UPDATE subscriptions SET state='ending' WHERE subscription_id = ?",
+             (subscription_id,))
 
         self._connection.commit()
 
-
-    def update_ending_subscriptions(self):
-        """Muuttaa tilauksen tilan päättyneeksi."""
-
-        cursor = self._connection.cursor()
-        cursor.execute(
-            "UPDATE subscriptions SET state='ended' WHERE end_date >= ? AND state='ending'",
-            (datetime.now().strftime('%Y-%m-%d'),))
-        self._connection.commit()
 
 subscription_repository = SubscriptionRepository(get_database_connection())

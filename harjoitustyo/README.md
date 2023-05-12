@@ -2,7 +2,9 @@
 Sovelluksen avulla käyttäjät voivat seurata voimassaolevia tilauksiaan eri palveluihin. Käyttäjät näkevät profiilistaan voimassaolevat tilaukset, niiden hinnan sekä seuraavan veloitusajankohdan. Käyttäjät voivat lisätä profiiliinsa uusia tilauksia sekä merkitä voimassaolevia tilauksia päättyviksi.
 
 ## Releases
-- [Viikko 5 release](https://github.com/imhlas/ot-harjoitustyo/releases)
+- [Viikko 5 release](https://github.com/imhlas/ot-harjoitustyo/releases/tag/viikko5)
+- [Viikko 6 release](https://github.com/imhlas/ot-harjoitustyo/releases/tag/viikko6)
+
 
 ## Dokumentaatio
 - [Vaatimusmäärittely](https://github.com/imhlas/ot-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/vaatimusmaarittely.md)

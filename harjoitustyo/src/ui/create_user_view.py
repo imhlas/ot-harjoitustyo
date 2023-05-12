@@ -44,7 +44,7 @@ class CreateUserView:
 
         try:
             subscription_service.create_user(username_value, password_value)
-            self._show_message(f"User {username_value} created succesfully. Please wait.")
+            self._show_message(f"User created succesfully. Please wait.")
             self._root.after(3000, self._show_login_view)
 
         except UsernameExistsError:
@@ -63,13 +63,13 @@ class CreateUserView:
         self._username_entry = ttk.Entry(master=self._frame)
 
         username_label.grid(row=1, column=0)
-        self._username_entry.grid(row=1, column=1, columnspan=3, pady=5)
+        self._username_entry.grid(row=1, column=1, columnspan=2, pady=5, sticky=constants.EW)
 
         password_label = ttk.Label(master=self._frame, text="Password")
         self._password_entry = ttk.Entry(master=self._frame, show="*")
 
         password_label.grid(row=2, column=0, pady=5)
-        self._password_entry.grid(row=2, column=1, columnspan=3, pady=5)
+        self._password_entry.grid(row=2, column=1, columnspan=2, pady=5, sticky= constants.EW)
 
     def _initialize(self):
         """Alustaa näkymän."""
@@ -79,9 +79,9 @@ class CreateUserView:
         self._message_variable = StringVar(self._frame)
 
         self._message_label = ttk.Label(
-            master=self._frame, textvariable=self._message_variable, foreground="green", font=("Arial", 14, "bold"))
+            master=self._frame, textvariable=self._message_variable, foreground="green", font=("Arial", 12, "bold"))
 
-        self._message_label.grid(row=5, column=1, pady=(10, 0))
+        self._message_label.grid(row=5, column=0, columnspan=3, pady=5)
 
         heading_label = ttk.Label(
             master=self._frame, text="Create user", font=("Arial", 13))
@@ -94,5 +94,5 @@ class CreateUserView:
         create_user_button = ttk.Button(
             master=self._frame, text="Create user", command=self._create_user_handler)
 
-        login_button.grid(row=3, column=1, padx=5, pady=5)
-        create_user_button.grid(row=3, column=2, padx=5, pady=5)
+        login_button.grid(row=3, column=1, padx=5, pady=5, sticky=constants.EW)
+        create_user_button.grid(row=3, column=2, padx=5, pady=5, sticky = constants.EW)

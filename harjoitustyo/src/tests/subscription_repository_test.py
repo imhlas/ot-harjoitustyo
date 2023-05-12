@@ -9,8 +9,8 @@ class TestSubscriptionRepository(unittest.TestCase):
     def setUp(self):
         self.kayttaja1 = User("iida", "salasana123")
 
-        self.subscription1 = Subscription(self.kayttaja1.user_id, "Netflix", 9.90, "3.3.2023")
-        self.subscription2 = Subscription(self.kayttaja1.user_id, "Spotify", 11.90, "2.2.2022")
+        self.subscription1 = Subscription(self.kayttaja1.user_id, "Netflix", 9.90, "31.12.2030")
+        self.subscription2 = Subscription(self.kayttaja1.user_id, "Spotify", 11.90, "2.2.2020")
         initialize_database()
 
     def test_create(self):
@@ -19,7 +19,7 @@ class TestSubscriptionRepository(unittest.TestCase):
         self.assertEqual(subscription.user_id, self.kayttaja1.user_id)
         self.assertEqual(subscription.name, "Netflix")
         self.assertEqual(subscription.price, 9.90)
-        self.assertEqual(subscription.end_date, "3.3.2023")
+        self.assertEqual(subscription.end_date, "31.12.2030")
 
     def test_find_users_subscriptions_returns_all_subscriptions(self):
         subscription_repository.create(self.subscription1)
