@@ -46,7 +46,8 @@ class SubscriptionRepository:
         cursor = self._connection.cursor()
 
         cursor.execute(
-            "UPDATE subscriptions SET state='ended' WHERE user_id= ? and end_date < ? AND state='ending'",
+            "UPDATE subscriptions SET state='ended' "
+            "WHERE user_id= ? and end_date < ? AND state='ending'",
             (user.user_id, datetime.now().strftime('%Y-%m-%d'),))
         self._connection.commit()
 
@@ -70,7 +71,8 @@ class SubscriptionRepository:
 
         cursor = self._connection.cursor()
         cursor.execute(
-            "INSERT INTO subscriptions (user_id, name, price, end_date, state) values (?, ?, ?, ?, ?)",
+            "INSERT INTO subscriptions (user_id, name, price, end_date, state) "
+            "VALUES (?, ?, ?, ?, ?)",
             (subscription.user_id, subscription.name, subscription.price,
             datetime.strptime(subscription.end_date, "%d.%m.%Y"), subscription.state))
 

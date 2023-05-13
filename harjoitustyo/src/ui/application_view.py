@@ -1,5 +1,5 @@
 from tkinter import ttk, constants
-from datetime import datetime
+from datetime import datetime, timedelta
 from services.subscription_service import subscription_service
 
 class SubscriptionView:
@@ -60,19 +60,27 @@ class SubscriptionView:
         price_label = ttk.Label(master=self._frame, text="{:.2f}€".format(float(subscription.price)).replace('.', ','))
         price_label.grid(row=row, column=3, columnspan=3, padx=5, pady=5, sticky=constants.W)
 
-        end_date = datetime.strptime(subscription.end_date, '%Y-%m-%d %H:%M:%S')
-        end_date_label = ttk.Label(master=self._frame, text=end_date.strftime('%d-%m-%Y'))
-        end_date_label.grid(row=row, column=6, columnspan=3, padx=5, pady=5, sticky=constants.W)
-
         if subscription.state == 'active':
+            end_date = datetime.strptime(subscription.end_date, '%Y-%m-%d %H:%M:%S')
+            billing_date = end_date + timedelta(days=1)
+            billing_date_label = ttk.Label(master=self._frame, text=billing_date.strftime('%d-%m-%Y'))
+            billing_date_label.grid(row=row, column=6, columnspan=3, padx=5, pady=5, sticky=constants.W)
+
             state_label = ttk.Label(master=self._frame, text=subscription.state.upper())
             state_label.grid(row=row, column=9, columnspan=3, padx=5, pady=5, sticky=constants.W)
             set_ending_button = ttk.Button(master=self._frame, text="Set ending",
                 command=lambda:self._handle_set_subscription_ending(subscription.subscription_id))
             set_ending_button.grid(row=row, column=12, columnspan=2, padx=5, pady=5, sticky=constants.W)
         else:
-            state_label = ttk.Label(master=self._frame, text=subscription.state.upper(), foreground="red")
+           # billing_date_label = ttk.Label(master=self._frame, text="")
+           # billing_date_label.grid(row=row, column=6, columnspan=3, padx=5, pady=5, sticky=constants.W)
+
+            state_label = ttk.Label(master=self._frame, text= "ENDING ON:", foreground="red")
             state_label.grid(row=row, column=9, columnspan=3, padx=5, pady=5, sticky=constants.W)
+
+            end_date = datetime.strptime(subscription.end_date, '%Y-%m-%d %H:%M:%S')
+            end_date_label = ttk.Label(master=self._frame, text=end_date.strftime('%d-%m-%Y'), foreground="red")
+            end_date_label.grid(row=row, column=12, columnspan=3, padx=5, pady=5, sticky=constants.W)
 
         self._frame.grid_columnconfigure(0, weight=10, minsize=200)
         self._frame.pack(fill=constants.X)
@@ -87,6 +95,7 @@ class SubscriptionView:
         for subscription in self._subscriptions:
             self._initialize_subscription(subscription,row)
             row += 1
+
 class CreateApplicationView:
     """Tilausten listauksesta ja lisäämisestä vastaava näkymä."""
 
@@ -130,6 +139,7 @@ class CreateApplicationView:
 
     def _handle_set_subscription_ending(self, subscription_id):
         subscription_service.set_subscription_ending(subscription_id)
+        self._initialize_header()
         self._initialize_subscriptions()
 
     def _initialize_sum_of_subscriptions(self, sum):

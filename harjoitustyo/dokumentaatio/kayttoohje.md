@@ -42,4 +42,7 @@ Painikkeesta "Logout" pääsee kirjautumaan ulos sovelluksesta, jolloin sovellus
 ## Uuden tilauksen luominen
 Tilausnäkymästä on mahdollisuus siirtyä tilaustenlisäysnäkymään, jossa voidaan lisätä uusia tilauksia:
 
+![](./kuvat/add_subscription.png)
+
+
 Tilauksista kirjataan ulos nimi, hinta sekä tilauksen päättymispäivä. Päättymispäivää seuraava päivä näytetään tilausnäkymän kohdassa *seuraava veloituspäivä*. Syötettävien tietojen muotovaatimukset on esitetty niitä vastaavien kenttien edellä. Mikäli käyttäjä kirjoittaa hinnan tai päättymispäivän väärässä muodossa, sovellus ilmoittaa tästä. Mikäli syötteet on annettu vaaditussa muodossa, sovellus antaa tästä ilmoituksen ja siirtyy tämän jälkeen automaattisest takaisin tilausnäkymään.

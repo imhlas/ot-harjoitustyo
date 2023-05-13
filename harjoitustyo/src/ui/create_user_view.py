@@ -79,7 +79,7 @@ class CreateUserView:
         self._message_variable = StringVar(self._frame)
 
         self._message_label = ttk.Label(
-            master=self._frame, textvariable=self._message_variable, foreground="green", font=("Arial", 12, "bold"))
+            master=self._frame, textvariable=self._message_variable, font=("Arial", 12, "bold"))
 
         self._message_label.grid(row=5, column=0, columnspan=3, pady=5)
 
