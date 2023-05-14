@@ -10,6 +10,7 @@ Lisäksi käyttäjät näkevät kaikkien aktiivisten tilaustensa yhteissumman. K
 ## Releases
 - [Viikko 5 release](https://github.com/imhlas/ot-harjoitustyo/releases/tag/viikko5)
 - [Viikko 6 release](https://github.com/imhlas/ot-harjoitustyo/releases/tag/viikko6)
+- [Loppupalautus](https://github.com/imhlas/ot-harjoitustyo/releases/tag/Loppupalautus)
 
 
 ## Dokumentaatio
