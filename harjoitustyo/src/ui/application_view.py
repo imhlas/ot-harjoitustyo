@@ -13,6 +13,8 @@ class SubscriptionView:
                 TKinter-elementti, jonka sisään näkymä alustetaan.
             subscriptions:
                 Lista Subscription-olioita, jotka näkymässä näytetään
+            handle_set_subscription_ending;
+                Kutsuttava arvo, jota kutsutaan, kun tilaus muutetaan päättyväksi.
         """
 
         self._root = root
@@ -52,8 +54,6 @@ class SubscriptionView:
         state_title.grid(row=0, column=9, columnspan=3, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_subscription(self, subscription, row):
-        """Listaa tilaukset näkymään."""
-
         name_label = ttk.Label(master=self._frame, text=subscription.name)
         name_label.grid(row=row, column=0, columnspan=3, padx=5, pady=5, sticky=constants.W)
 
@@ -72,9 +72,6 @@ class SubscriptionView:
                 command=lambda:self._handle_set_subscription_ending(subscription.subscription_id))
             set_ending_button.grid(row=row, column=12, columnspan=2, padx=5, pady=5, sticky=constants.W)
         else:
-           # billing_date_label = ttk.Label(master=self._frame, text="")
-           # billing_date_label.grid(row=row, column=6, columnspan=3, padx=5, pady=5, sticky=constants.W)
-
             state_label = ttk.Label(master=self._frame, text= "ENDING ON:", foreground="red")
             state_label.grid(row=row, column=9, columnspan=3, padx=5, pady=5, sticky=constants.W)
 
@@ -132,7 +129,6 @@ class CreateApplicationView:
         self._frame.destroy()
 
     def _logout_handler(self):
-        """Kirjaa käyttäjän ulos ja kutsuu kirjautumisnäkymään siirtymisestä vastaavaa arvoa."""
 
         subscription_service.logout()
         self._show_login_view()
@@ -151,8 +147,6 @@ class CreateApplicationView:
         total_price.grid(padx=5, pady=5)
 
     def _initialize_header(self):
-        """Alustaa näkymän otsikkotason tekstit ja painikkeet."""
-
         heading_label = ttk.Label(
             master=self._frame, text=f"Hello {self._user.username}!", font=("Arial", 14))
 
@@ -173,8 +167,6 @@ class CreateApplicationView:
 
 
     def _initialize_subscriptions(self):
-        """Listaa tilaukset näkymään."""
-
         if self._subscription_view:
             self._subscription_view.destroy()
 
@@ -189,8 +181,6 @@ class CreateApplicationView:
             no_subscriptions_label.pack()
 
     def _initialize_footer(self):
-        """Alustaa näkymän alatason tekstit ja painikkeet."""
-
         add_subscription_button = ttk.Button(master=self._frame, text="Add new Subscription",
             command=self._show_create_subscription_view)
 
@@ -198,8 +188,6 @@ class CreateApplicationView:
 
 
     def _initialize(self):
-        """Alustaa näkymän."""
-
         self._frame = ttk.Frame(master=self._root)
         self._initialize_header()
 

@@ -7,25 +7,25 @@ Sovelluksella on ainoastaan yksi käyttäjärooli eli **normaali käyttäjä**.
 
 ## Käyttöliittymä
 Sovellusta pystyy käyttämään graafisen käyttöliittymän kautta.
-- Näkymä kirjautumissivulle **(tehty)**
-- Näkymä uuden käyttäjän luomiselle **(tehty)**
-- Näkymä käytäjän voimassaolevista tilauksista **(tehty)**
-- Näkymä uuden tilauksen lisäämiseen **(tehty)**
+- Näkymä kirjautumissivulle
+- Näkymä uuden käyttäjän luomiselle
+- Näkymä käyttäjän voimassaolevista tilauksista
+- Näkymä uuden tilauksen lisäämiseen
 
 ## Perusversion tarjoama toiminnallisuus
 ### Ennen kirjautumista
-- Käyttäjä voi luoda käyttäjätunnuksen **(tehty)**
-- Käyttäjä voi kirjautua järjestelmään **(tehty)**
+- Käyttäjä voi luoda käyttäjätunnuksen 
+- Käyttäjä voi kirjautua järjestelmään 
 	- Kirjatuminen tapahtuu käyttäjätunnuksen ja salasanan avulla
 	- Jos käyttäjää ei ole olemassa, järjestelmä ilmoittaa tästä
 	- Jos salasana on väärä, järjestelmä ilmoittaa tästä
 
 ### Kirjautumisen jälkeen
-- Käyttäjä näkee omat voimassaolevat tilaukset, niiden hinnan sekä seuraavan veloitusajankohdan **(tehty)**
-- Käyttäjä näkee kaikkien tilausten yhteissumman **(tehty)**
-- Käyttäjä voi lisätä uuden tilauksen **(tehty)**
-- Käyttäjä voi merkitä tilauksen päättyväksi **(tehty)**
-- Käyttäjä voi kirjautua ulos järjestelmästä **(tehty)**
+- Käyttäjä näkee omat voimassaolevat tilaukset, niiden hinnan, seuraavan veloitusajankohdan sekä statuksen(aktiivinen/päättyvä) 
+- Käyttäjä näkee kaikkien tilausten yhteissumman
+- Käyttäjä voi lisätä uuden tilauksen
+- Käyttäjä voi merkitä tilauksen päättyväksi
+- Käyttäjä voi kirjautua ulos järjestelmästä
 
 ## Jatkokehitysideoita
 - Tilausten jako kategorioihin (suoratoistopalvelut, lehtitilaukset, liikunta ym.)

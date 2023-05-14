@@ -139,6 +139,9 @@ class SubscriptionService:
 
     def set_subscription_ending(self, subscription_id):
         """Päivittää tilauksen päättyväksi.
+
+        Args:
+            subscription_id: Päiviettävän tilauksen tunniste.
         """
 
         self._subscription_repository.update_state_ending(subscription_id)

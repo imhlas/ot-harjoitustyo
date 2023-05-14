@@ -17,5 +17,5 @@
 | 7.5   |  5   | Tietokantaoperaatioiden ja käyttöliittymän laajennus (tilauksen status ja sen muuttaminen, tilausten yhteissumma) 
 | 9.5   |  3   | Erillisen testitietokannan luonti, ympäristömuuttujat ja konfigurointi
 | 12.5  |  4   | Graafisen käyttöliittymän parantelu, dokumentaation täydentäminen
-
-| YHT   |  54  |
+| 13.5  |  3   | Testaaminen ja dokumentaation täydennys
+| YHT   |  57  |

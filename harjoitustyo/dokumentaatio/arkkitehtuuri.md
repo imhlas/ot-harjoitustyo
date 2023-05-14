@@ -58,8 +58,6 @@ Sovelluksen luokkien suhteita sekä niiden sijaintia sovelluksen rakenteessa kuv
 ## Tietojen pysyväistallennus
 Pakkauksessa *repositories* sijaitsevat luokat *UserRepository* ja *SubscriptionRepository* vastaavat tietojen tallennuksesta SQLite-tietokantaan. Luokat noudattavat Repository-suunnittelumallia ja ne voidaan tarvittaessa korvata uusilla toteutuksilla. 
 
-Sovelluslogiikan testaamisessa tietoja ei tallenneta lainkaan tietokantaan, vaan testit tallentavat tiedot suoraan keskusmuistiin.
-
 ## Päätoiminnallisuudet
 Seuraavissa alaluvuissa kuvataan sovelluksen kolme tärkeintä päätoiminnallisuutta sekvenssikaavioiden avulla.
 ### Käyttäjän luominen
@@ -131,7 +129,7 @@ Tapahtumankäsittelijä kutsuu sovelluslogiikan *SubscriptionService* metodia *c
 Mikäli tiedot tallennetaan tietokantaan onnistuneesti, käyttöliittymä välittää tästä käyttäjälle viestin ja pyytää odottamaan. Tämän jälkeen käyttöliittymä siirtyy takaisin sovelluksen päänäkymään *CreateApplicationView*.
 
 ### Muut toiminnallisuudet
-Yllä kuvattujen päätoiminnallisuuksien lisäksi sovellus sisältää toiminnallisuuden, jolla käyttäjä voi merkitä aktiivisen tilauksensa päättyväksi. Tämä toimii vastaavalla periaatteella päätoiminnallisuuksien kanssa, eli käyttöliittymän tapahtumankäsittelijä kutsuu sovelluslogiikan metodia, joka päivittää tilauksen tilan aktiivisesta päättyväksi. Käyytöliittymän näkymään päivittyy tämän jälkeen tilauksen vaihtunut tila (aktiivinen->päättyvä).
+Yllä kuvattujen päätoiminnallisuuksien lisäksi sovellus sisältää toiminnallisuuden, jolla käyttäjä voi merkitä aktiivisen tilauksensa päättyväksi. Tämä toimii vastaavalla periaatteella päätoiminnallisuuksien kanssa, eli käyttöliittymän tapahtumankäsittelijä kutsuu sovelluslogiikan metodia, joka päivittää tilauksen tilan aktiivisesta päättyväksi. Käyttöliittymän näkymään päivittyy tämän jälkeen tilauksen vaihtunut tila (aktiivinen->päättyvä).
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
